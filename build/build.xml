@@ -1,0 +1,49 @@
+<project name="Reflex Tests Build" basedir="../" default="compile">
+	
+	<property file="./build/build.properties" />
+	<!--
+	<property name="APP_ROOT" value="src" />
+	-->
+	<property name="FLEX_HOME" value="${flex-sdk.dir}" />
+	
+	
+	<taskdef resource="flexTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexTasks.jar"/>
+	<taskdef resource="flexUnitTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexUnitTasks-4.0.0.jar" />
+	
+	<target name="compile">
+		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf">
+			<load-config filename="${flex-sdk.dir}/frameworks/flex-config.xml"/>
+			<source-path path-element="${flex-sdk.dir}/frameworks"/>
+			<compiler.library-path dir="." append="true">
+				<include name="libs" />
+			</compiler.library-path>
+		</mxmlc>
+	</target>
+	
+	<target name="test" >
+		<!-- Compile TestRunner.mxml as a SWF -->
+		
+		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf">
+			<source-path path-element="${src.dir}" />
+			<library-path dir="libs" append="true">
+				<include name="*.swc" />
+			</library-path>
+			<compiler.verbose-stacktraces>true</compiler.verbose-stacktraces>
+			<compiler.headless-server>true</compiler.headless-server>
+		</mxmlc>
+		
+		<!-- Execute TestRunner.swf as FlexUnit tests and publish reports -->
+		<flexunit swf="${bin.dir}/ReflexTests.swf" toDir="${reports.dir}" haltonfailure="false" verbose="true" localTrusted="true" />
+		
+		<!-- Generate readable JUnit-style reports -->
+		
+		<junitreport todir="${reports.dir}">
+			<fileset dir="${reports.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${reports.dir}/html" />
+		</junitreport>
+		
+	</target>
+	
+</project>

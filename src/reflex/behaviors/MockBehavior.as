@@ -1,8 +1,8 @@
 package reflex.behaviors
 {
-	import reflex.core.IBehavior;
+	//import reflex.core.IBehavior;
 
-	public class MockBehavior implements IBehavior
+	public class MockBehavior //implements IBehavior
 	{
 		
 		private var _target:Object;
