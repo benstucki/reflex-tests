@@ -24,7 +24,9 @@
 		<!-- Compile TestRunner.mxml as a SWF -->
 		
 		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf">
-			<source-path path-element="${src.dir}" />
+			<load-config filename="${flex-sdk.dir}/frameworks/flex-config.xml"/>
+			<source-path path-element="${flex-sdk.dir}/frameworks"/>
+			<!--<source-path path-element="${src.dir}" />-->
 			<library-path dir="libs" append="true">
 				<include name="*.swc" />
 			</library-path>
