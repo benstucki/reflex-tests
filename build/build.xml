@@ -6,7 +6,6 @@
 	-->
 	<property name="FLEX_HOME" value="${flex-sdk.dir}" />
 	
-	
 	<taskdef resource="flexTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexTasks.jar"/>
 	<taskdef resource="flexUnitTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexUnitTasks-4.0.0.jar" />
 	
@@ -22,6 +21,7 @@
 	
 	<target name="test" >
 		<!-- Compile TestRunner.mxml as a SWF -->
+		<property name="FLEX_HOME" value="${flex-sdk.dir}" />
 		
 		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf">
 			<load-config filename="${flex-sdk.dir}/frameworks/flex-config.xml"/>
