@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
-	xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner" 
-	layout="absolute" applicationComplete="init()">
-	<mx:Script>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/halo" 
+			   creationComplete="init()" xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner">
+	
+	<fx:Script>
 		<![CDATA[
 			import org.flexunit.internals.TraceListener;
 			import org.flexunit.listeners.CIListener;
@@ -11,19 +13,19 @@
 			
 			import reflex.tests.ReflexSuite;
 			
-			//private var core:FlexUnitCore;
+			private var core:FlexUnitCore;
 			
 			private function init():void {
 				var core:FlexUnitCore = new FlexUnitCore();
-				//core.addListener( new UIListener( runner ) );
+				core.addListener( new UIListener( runner ) );
 				core.addListener( new CIListener() );
 				//core.addListener( new TraceListener() );
 				core.run( ReflexSuite );
 			}
 			 
 		]]>
-	</mx:Script>
-	<!--
+	</fx:Script>
+	
 	<unit:TestRunnerBase id="runner" left="10" right="10" top="10" bottom="10" />
-	-->
-</mx:Application>
+	
+</s:Application>
