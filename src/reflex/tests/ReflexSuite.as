@@ -1,6 +1,7 @@
 package reflex.tests
 {
 	import reflex.behaviors.CompositeBehaviorTest;
+	import reflex.behaviors.SelectableBehaviorTest;
 	import reflex.utils.MetaInjectorTest;
 	import reflex.utils.MetaUtilTest;
 	
@@ -10,6 +11,7 @@ package reflex.tests
 	public class ReflexSuite
 	{
 		
+		public var selectabe:SelectableBehaviorTest;
 		public var behaviors:CompositeBehaviorTest;
 		public var metaUtil:MetaUtilTest;
 		public var metaInjector:MetaInjectorTest;

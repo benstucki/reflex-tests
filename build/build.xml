@@ -1,51 +1,101 @@
 <project name="Reflex Tests Build" basedir="../" default="compile">
 	
 	<property file="./build/build.properties" />
-	<!--
-	<property name="APP_ROOT" value="src" />
-	-->
 	<property name="FLEX_HOME" value="${flex-sdk.dir}" />
 	
 	<taskdef resource="flexTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexTasks.jar"/>
-	<taskdef resource="flexUnitTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexUnitTasks-4.0.0.jar" />
+	<taskdef resource="flexUnitTasks.tasks" classpath="${flex-unit.dir}/flexUnitTasks-${flex-unit.version}.jar" />
 	
-	<target name="compile">
-		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf">
-			<load-config filename="${flex-sdk.dir}/frameworks/flex-config.xml"/>
-			<source-path path-element="${flex-sdk.dir}/frameworks"/>
-			<compiler.library-path dir="." append="true">
-				<include name="libs" />
-			</compiler.library-path>
-		</mxmlc>
+	<target name="clean">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${bin.dir}" defaultexcludes="false">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${reports.dir}" defaultexcludes="false">
+				<include name="**/*"/>
+			</fileset>
+		</delete>
 	</target>
 	
-	<target name="test" >
-		<!-- Compile TestRunner.mxml as a SWF -->
-		<property name="FLEX_HOME" value="${flex-sdk.dir}" />
-		
-		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf">
-			<load-config filename="${flex-sdk.dir}/frameworks/flex-config.xml"/>
-			<source-path path-element="${flex-sdk.dir}/frameworks"/>
-			<!--<source-path path-element="${src.dir}" />-->
+	<!-- Compile ReflexTests.mxml as a SWF -->
+	<target name="compile">
+		<mxmlc file="${src.dir}/ReflexTests.mxml" output="${bin.dir}/ReflexTests.swf" debug="true" fork="true" maxmemory="512m">
+			<load-config filename="${basedir}/build/flex-config.xml"/>
+			<external-library-path dir="${flex-sdk.dir}/frameworks/libs/player/${flex-sdk.player}" append="true">
+				<include name="playerglobal.swc" />
+			</external-library-path>
+			<library-path dir="${flex-sdk.dir}/frameworks" append="true">
+				<include name="libs/*.swc" />
+				<include name="locale/${flex-sdk.locale}/*.swc" />
+			</library-path>
 			<library-path dir="libs" append="true">
 				<include name="*.swc" />
 			</library-path>
-			<compiler.verbose-stacktraces>true</compiler.verbose-stacktraces>
-			<compiler.headless-server>true</compiler.headless-server>
+			<library-path dir="${reflex.bin}" append="true">
+				<include name="*.swc" />
+			</library-path>
+			<show-actionscript-warnings>false</show-actionscript-warnings>
+			<show-binding-warnings>false</show-binding-warnings>
+			<verbose-stacktraces>true</verbose-stacktraces>
+			<target-player>10.0.0</target-player>
 		</mxmlc>
-		
-		<!-- Execute TestRunner.swf as FlexUnit tests and publish reports -->
-		<flexunit swf="${bin.dir}/ReflexTests.swf" toDir="${reports.dir}" haltonfailure="false" verbose="true" localTrusted="true" />
-		
-		<!-- Generate readable JUnit-style reports -->
-		
+	</target>
+	
+	<!-- Execute ReflexTests -->
+	<target name="reflex-tests" depends="compile">
+		<flexunit swf="${bin.dir}/ReflexTests.swf" toDir="${reports.dir}" haltonfailure="true" verbose="true" localTrusted="true" headless="false" />
+	</target>
+	
+	<!-- Execute CoverageViewer & ReflexTests -->
+	<target name="coverage-test" depends="clean">
+		<exec executable="${flex-cover.exe}" spawn="true">
+			<arg line="'${flex-cover.cvm}'" />
+			<arg line="-output '${flex-cover.cvr}'" />
+		</exec>
+		<sleep seconds="30"/>
+		<antcall target="reflex-tests" />
+	</target>
+	
+	<!-- Generate Cobertura style xml from a FlexCover cvr file -->
+	<target name="cobertura-report">
+		<tstamp>
+			<format property="flex-cover.timestamp" pattern="MM/dd/yyyy HH:mm:ss.SSS"/>
+		</tstamp>
+		<xslt in="${flex-cover.cvr}" out="${flex-cover.cobertura}" style="build/fc-to-cobertura.xsl">
+			<classpath>
+				<fileset dir="libs">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+			<param name="sourcePath" expression="${src.dir}"/>
+			<param name="timestamp" expression="${flex-cover.timestamp}"/>
+			<param name="version" expression="0.81"/>
+		</xslt>
+	</target>
+	
+	<!-- Generate readable JUnit-style reports -->
+	<target name="junit-report">
 		<junitreport todir="${reports.dir}">
 			<fileset dir="${reports.dir}">
 				<include name="TEST-*.xml" />
 			</fileset>
 			<report format="frames" todir="${reports.dir}/html" />
 		</junitreport>
-		
+	</target>
+	
+	<!-- Run Unit Tests and generate reports -->
+	<target name="test-and-report" depends="reflex-tests">
+		<antcall target="reflex-tests" />
+		<antcall target="junit-report" />
+	</target>
+	
+	<!-- Run ALL Tests and generate ALL reports -->
+	<target name="coverage-test-and-report" depends="coverage-test">
+		<waitfor checkevery="3" checkeveryunit="second">
+			<available file="${flex-cover.cvr}"/>
+		</waitfor>
+		<antcall target="cobertura-report" />
+		<antcall target="junit-report" />
 	</target>
 	
 </project>
