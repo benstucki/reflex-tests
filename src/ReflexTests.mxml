@@ -6,9 +6,8 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.allurent.coverage.runtime.CoverageManager;
-			
 			import org.flexunit.listeners.CIListener;
+			import org.flexunit.listeners.FlexCoverListener;
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
 			
@@ -19,15 +18,14 @@
 			private function init():void {
 				var core:FlexUnitCore = new FlexUnitCore();
 				core.addListener( new UIListener( runner ) );
-				core.addListener( new CIListener() );
+				core.addListener( new FlexCoverListener() );
 				//core.addListener( new TraceListener() );
 				core.run( ReflexSuite );
-				
 			}
 			 
 		]]>
 	</fx:Script>
 	
-	<unit:TestRunnerBase id="runner" left="10" right="10" top="10" bottom="10" testsComplete="CoverageManager.exit()" />
+	<unit:TestRunnerBase id="runner" left="10" right="10" top="10" bottom="10" />
 	
 </s:Application>
