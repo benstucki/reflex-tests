@@ -2,30 +2,33 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/halo" 
-			   applicationComplete="init()" xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner">
+			   xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner"
+			   applicationComplete="init()" frameRate="5" >
 	
 	<fx:Script>
 		<![CDATA[
 			import org.flexunit.listeners.CIListener;
-			import org.flexunit.listeners.FlexCoverListener;
+			//import org.flexunit.listeners.FlexCoverListener;
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
 			
+			import reflex.listeners.closer.CustomFlexCoverCloser;
 			import reflex.tests.ReflexSuite;
 			
 			private var core:FlexUnitCore;
 			
 			private function init():void {
+				var cover:CIListener = new CIListener();
+				cover.closer = new CustomFlexCoverCloser();
 				var core:FlexUnitCore = new FlexUnitCore();
-				//core.addListener( new UIListener( runner ) );
-				core.addListener( new FlexCoverListener() );
-				//core.addListener( new TraceListener() );
+				core.addListener( new UIListener( runner ) );
+				core.addListener( cover );
 				core.run( ReflexSuite );
 			}
 			
 		]]>
 	</fx:Script>
-	<!--
+	
 	<unit:TestRunnerBase id="runner" left="10" right="10" top="10" bottom="10" />
-	-->
+	
 </s:Application>
