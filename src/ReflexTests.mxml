@@ -2,7 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/halo" 
-			   creationComplete="init()" xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner">
+			   applicationComplete="init()" xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner">
 	
 	<fx:Script>
 		<![CDATA[
@@ -17,15 +17,15 @@
 			
 			private function init():void {
 				var core:FlexUnitCore = new FlexUnitCore();
-				core.addListener( new UIListener( runner ) );
+				//core.addListener( new UIListener( runner ) );
 				core.addListener( new FlexCoverListener() );
 				//core.addListener( new TraceListener() );
 				core.run( ReflexSuite );
 			}
-			 
+			
 		]]>
 	</fx:Script>
-	
+	<!--
 	<unit:TestRunnerBase id="runner" left="10" right="10" top="10" bottom="10" />
-	
+	-->
 </s:Application>
