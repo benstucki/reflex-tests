@@ -118,7 +118,7 @@
 	
 	<!-- Run Copy/Paste Detection -->
 	<target name="cpd-report">
-		<cpd minimumTokenCount="50" outputFile="${cpd-report.dir}/{cpd-report.name}.xml">
+		<cpd minimumTokenCount="50" outputFile="${cpd-report.dir}/${cpd-report.name}.xml">
 			<fileset dir="${library.src}">
 				<include name="**/*.as"/>
 				<include name="**/*.mxml"/>
@@ -128,7 +128,7 @@
 	
 	<!-- Run Metrics Report -->
 	<target name="metrics-report">
-		<metrics sourcedirectory="${library.src}" outputfile="${metrics-report.dir}/{metrics-report.name}.xml" />
+		<metrics sourcedirectory="${library.src}" outputfile="${metrics-report.dir}/${metrics-report.name}.xml" />
 	</target>
 	
 	<!-- Generate Cobertura style xml from a FlexCover cvr file -->
