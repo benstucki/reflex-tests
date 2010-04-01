@@ -5,6 +5,7 @@
 	
 	<taskdef resource="flexTasks.tasks" classpath="${flex-sdk.dir}/ant/lib/flexTasks.jar"/>
 	<taskdef resource="flexUnitTasks.tasks" classpath="${flex-unit.dir}/flexUnitTasks-${flex-unit.version}.jar" />
+	<taskdef name="saxon-xslt" classname="net.sf.saxon.ant.AntTransform" classpath="${libs.dir}/saxon9he.jar;${libs.dir}/saxon9-ant.jar" />
 	
 	<taskdef name="pmd" classname="com.adobe.ac.pmd.ant.FlexPmdAntTask" classpath="${flex-pmd.pmd}/flex-pmd-ant-task-${flex-pmd.version}.jar">
 		<classpath>
@@ -135,7 +136,7 @@
 		<tstamp>
 			<format property="flex-cover.timestamp" pattern="MM/dd/yyyy HH:mm:ss.SSS"/>
 		</tstamp>
-		<xslt in="${flex-cover.cvr}" out="${flex-cover.cobertura}" style="build/fc-to-cobertura.xsl">
+		<saxon-xslt in="${flex-cover.cvr}" out="${flex-cover.cobertura}" style="build/fc-to-cobertura.xsl">
 			<classpath>
 				<fileset dir="libs">
 					<include name="*.jar"/>
@@ -144,7 +145,7 @@
 			<param name="sourcePath" expression="${src.dir}"/>
 			<param name="timestamp" expression="${flex-cover.timestamp}"/>
 			<param name="version" expression="0.81"/>
-		</xslt>
+		</saxon-xslt>
 	</target>
 	
 	<!-- Run ALL Tests and generate ALL reports -->
