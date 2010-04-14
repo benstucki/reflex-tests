@@ -4,7 +4,9 @@ Thumbs.db
 .actionScriptProperties
 .flexProperties
 .flexLibProperties
+.FlexUnitSettings
 .settings
 bin
 bin-debug
+bin-release
 html-template

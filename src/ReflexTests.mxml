@@ -13,7 +13,7 @@
 			import org.flexunit.runner.FlexUnitCore;
 			
 			import reflex.listeners.closer.CustomFlexCoverCloser;
-			import reflex.tests.ReflexSuite;
+			//import ReflexSuite;
 			
 			private var core:FlexUnitCore;
 			
