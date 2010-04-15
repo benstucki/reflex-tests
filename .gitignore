@@ -10,3 +10,5 @@ bin
 bin-debug
 bin-release
 html-template
+build/build.properties
+build/flex-config.xml
