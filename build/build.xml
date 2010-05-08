@@ -149,11 +149,22 @@
 		</saxon-xslt>
 	</target>
 	
+	<!-- Generate readable JUnit-style reports -->
+	<target name="test-report">
+		<junitreport todir="${tests.dir}">
+			<fileset dir="${reports.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${tests.dir}" />
+		</junitreport>
+	</target>
+	
 	<!-- Run ALL Tests and generate ALL reports -->
 	<target name="coverage-test-and-report" depends="coverage-test">
 		<waitfor checkevery="3" checkeveryunit="second">
 			<available file="${flex-cover.cvr}"/>
 		</waitfor>
+		<antcall target="test-report" />
 		<antcall target="cobertura-report" />
 		<antcall target="pmd-report" />
 		<antcall target="cpd-report" />
