@@ -19,7 +19,7 @@
 			
 			private function init():void {
 				var cover:CIListener = new CIListener();
-				cover.closer = new CustomFlexCoverCloser();
+				//cover.closer = new CustomFlexCoverCloser();
 				var core:FlexUnitCore = new FlexUnitCore();
 				core.addListener( new UIListener( runner ) );
 				core.addListener( cover );
