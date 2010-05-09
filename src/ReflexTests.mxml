@@ -8,8 +8,8 @@
 	<fx:Script>
 		<![CDATA[
 			import org.flexunit.listeners.CIListener;
-			//import org.flexunit.listeners.FlexCoverListener;
 			import org.flexunit.listeners.UIListener;
+			import org.flexunit.listeners.closer.FlexCoverCloser;
 			import org.flexunit.runner.FlexUnitCore;
 			
 			import reflex.listeners.closer.CustomFlexCoverCloser;
@@ -19,6 +19,7 @@
 			
 			private function init():void {
 				var cover:CIListener = new CIListener();
+				cover.closer = new FlexCoverCloser();
 				//cover.closer = new CustomFlexCoverCloser();
 				var core:FlexUnitCore = new FlexUnitCore();
 				core.addListener( new UIListener( runner ) );
