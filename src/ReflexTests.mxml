@@ -12,15 +12,11 @@
 			import org.flexunit.listeners.closer.FlexCoverCloser;
 			import org.flexunit.runner.FlexUnitCore;
 			
-			import reflex.listeners.closer.CustomFlexCoverCloser;
-			//import ReflexSuite;
-			
 			private var core:FlexUnitCore;
 			
 			private function init():void {
 				var cover:CIListener = new CIListener();
 				cover.closer = new FlexCoverCloser();
-				//cover.closer = new CustomFlexCoverCloser();
 				var core:FlexUnitCore = new FlexUnitCore();
 				core.addListener( new UIListener( runner ) );
 				core.addListener( cover );
