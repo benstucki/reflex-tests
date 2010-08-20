@@ -114,7 +114,7 @@
 	
 	<!-- Run PMD static code analysis -->
 	<target name="pmd-report">
-		<pmd sourceDirectory="${library.src}" outputDirectory="${pmd-report.dir}" />
+		<pmd sourceDirectory="${library.src}" outputDirectory="${pmd-report.dir}" ruleSet="${flex-pmd.dir}/pmd.xml"/>
 	</target>
 	
 	<!-- Run Copy/Paste Detection -->
