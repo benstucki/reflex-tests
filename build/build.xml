@@ -161,7 +161,7 @@
 	
 	<!-- Run ALL Tests and generate ALL reports -->
 	<target name="coverage-test-and-report" depends="coverage-test">
-		<waitfor checkevery="3" checkeveryunit="second">
+		<waitfor checkevery="3" checkeveryunit="second" maxwait="10" maxwaitunit="minute">
 			<available file="${flex-cover.cvr}"/>
 		</waitfor>
 		<antcall target="test-report" />
