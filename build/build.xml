@@ -165,7 +165,7 @@
 			<available file="${flex-cover.cvr}"/>
 		</waitfor>
 		<antcall target="test-report" />
-		<!--<antcall target="cobertura-report" /> -->
+		<antcall target="cobertura-report" />
 		<antcall target="pmd-report" />
 		<antcall target="cpd-report" />
 		<antcall target="metrics-report" />
