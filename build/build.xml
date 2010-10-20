@@ -61,9 +61,9 @@
 			<strict>true</strict>
 			<optimize>true</optimize>
 			<warnings>true</warnings>
-			<library-path dir="${library.src}/../libs" append="true">
+			<!--<library-path dir="${library.src}/../libs" append="true">
 				<include name="*.swc" />
-			</library-path>
+			</library-path>-->
 		</compc>
 	</target>
 	
