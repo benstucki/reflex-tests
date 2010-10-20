@@ -45,12 +45,6 @@
 	<!-- Compiles the library as a SWC -->
 	<target name="compile-library">
 		<compc output="${bin.dir}/${library.name}.swc">
-			<source-path path-element="${library.src}"/>
-			<namespace uri="http://rx.reflex.io/2010" manifest="${library.src}/manifest.xml" />
-			<include-namespaces>http://rx.reflex.io/2010</include-namespaces>
-			<strict>true</strict>
-			<optimize>true</optimize>
-			<warnings>true</warnings>
 			<external-library-path dir="${flex-sdk.dir}/frameworks/libs/player/${flex-sdk.player}" append="true">
 				<include name="playerglobal.swc" />
 			</external-library-path>
@@ -58,6 +52,15 @@
 				<include name="libs/*.swc" />
 				<include name="locale/${flex-sdk.locale}/*.swc" />
 			</library-path>
+			<source-path path-element="${library.src}"/>
+			<namespace uri="http://rx.reflex.io/2010" manifest="${library.src}/manifest.xml" />
+			<include-namespaces>http://rx.reflex.io/2010</include-namespaces>
+			<!--<library-path dir="${library.src}/../libs" append="true">
+				<include name="*.swc" />
+			</library-path>-->
+			<strict>true</strict>
+			<optimize>true</optimize>
+			<warnings>true</warnings>
 			<library-path dir="${library.src}/../libs" append="true">
 				<include name="*.swc" />
 			</library-path>
