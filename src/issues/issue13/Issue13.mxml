@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:rx="http://rx.reflex.io/2010"
+				width="400" height="300" xmlns:mx="library://ns.adobe.com/flex/mx" 
+				xmlns:components="com.mgh.reflex.components.*" xmlns:local="*" xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Script>
+		<![CDATA[
+			public var dir:int = 1;
+		]]>
+	</fx:Script>
+	
+	<rx:layout>
+		<rx:VerticalLayout />
+	</rx:layout>
+	
+	<rx:VGroup percentWidth="100">
+		<rx:Label fontSize="12" text="Click r2 twice. Once to expand with of r2 and again to contract it." />
+		<rx:Label fontSize="12" text="Expected behavior: r1 sizes to dimensions of r2 since r1 has only left,right styles set." />
+		<rx:Label fontSize="12" text="Actual behavior: r1 stays expanded.  BasicLayout reads expanded rect width" />
+	</rx:VGroup>
+	
+	<rx:Group id="basicGroup" height="300" y="30">
+		<rx:Rect id="rect" left="0" top="0" right="0" bottom="0">
+			<rx:fill>
+				<rx:SolidColor color="#cccccc" />
+			</rx:fill>
+		</rx:Rect>
+		<rx:Label text="r1" />
+		<rx:Group id="rect2" click="rect2.width+=200*dir;dir=-dir;" y="30" width="300" height="200">    
+			<rx:Rect percentWidth="100" percentHeight="100">
+				<rx:fill>
+					<rx:SolidColor color="#990000" />
+				</rx:fill>
+			</rx:Rect>
+			<rx:Label text="r2" />
+		</rx:Group>
+	</rx:Group>
+</rx:Application>

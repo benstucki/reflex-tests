@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:rx="http://rx.reflex.io/2010"
+				xmlns:local="issues.issue7.*" >
+	<fx:Script>
+		<![CDATA[
+			
+			/**
+			 * There's some sort of issue with sizing when a list's dataProvider is reset. 
+			 * To recreate simply assign your list percent based width/height and then reset the dataProvider to a new value. 
+			 * Expected result: It should maintain the percent based width/height. Actual Result: It appears to resize to the measured width/height.
+			 **/
+			
+			private function updateList():void {
+				list.dataProvider = new SimpleCollection(collection.source.concat());
+			}
+			
+			private function clearList():void {
+				list.dataProvider = null;
+			}
+			
+		]]>
+	</fx:Script>
+	<rx:layout>
+		<rx:BasicLayout />
+	</rx:layout>
+	
+	<fx:Declarations>
+		<rx:SimpleCollection id="collection">
+			<fx:Object label="test 1" />
+			<fx:Object label="test 2" />
+			<fx:Object label="test 3" />
+			<fx:Object label="test 4" />
+			<fx:Object label="test 5" />
+		</rx:SimpleCollection>
+	</fx:Declarations>
+	
+	<rx:List id="list" dataProvider="{collection}" width="80%" height="80%" horizontalCenter="0" verticalCenter="0" />
+	
+	<rx:Button label="Add Collection" click="list.dataProvider = collection" y="60" />
+	<rx:Button label="Clear Collection" click="clearList()" y="140" />
+</rx:Application>

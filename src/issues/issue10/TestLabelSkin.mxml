@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rx:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:rx="http://rx.reflex.io/2010"
+		 xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Script>
+		<![CDATA[
+			import reflex.invalidation.Invalidation;
+			
+			public function set text(value:String):void {
+				label.text = value;
+				
+				//Invalidation.invalidate(target, MEASURE);
+				//Invalidation.invalidate(target, LAYOUT);/**/
+				
+			}
+			
+			public function get text():String {
+				return label.text;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<rx:layout>
+		<rx:BasicLayout />
+	</rx:layout>
+	
+	<rx:Rect id="rect" left="0" top="0" right="0" bottom="0">
+		<rx:fill>
+			<rx:SolidColor color="#cccccc" />
+		</rx:fill>
+	</rx:Rect>
+	
+	<rx:Label verticalCenter="0" id="label" text="" left="10" right="10"
+			  fontSize="18" fontFamily="Arial" color="#000000" />
+	
+</rx:Skin>

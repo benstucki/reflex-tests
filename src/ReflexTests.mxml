@@ -3,7 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/halo" 
 			   xmlns:unit="http://www.adobe.com/2009/flexUnitUIRunner"
-			   applicationComplete="init()" frameRate="5" >
+			   applicationComplete="init()" frameRate="5">
 	
 	<fx:Script>
 		<![CDATA[
@@ -15,6 +15,7 @@
 			private var core:FlexUnitCore;
 			
 			private function init():void {
+				ReflexSuite.stage = this.stage;
 				var cover:CIListener = new CIListener();
 				cover.closer = new FlexCoverCloser();
 				var core:FlexUnitCore = new FlexUnitCore();

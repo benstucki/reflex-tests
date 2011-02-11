@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:rx="http://rx.reflex.io/2010"
+				xmlns:local="*" >
+	
+	<rx:layout>
+		<rx:BasicLayout />
+	</rx:layout>
+	
+	<rx:VGroup width="100%">
+		
+		<rx:Group width="50%" x="0">
+			
+			<rx:Rect left="0" top="0" right="0" bottom="0">
+				<rx:fill>
+					<rx:SolidColor color="#cccccc" />
+				</rx:fill>
+			</rx:Rect>
+			
+			<rx:VGroup width="100%" left="10" right="10">
+				
+				<!-- Label 1 -->
+				<rx:Label width="100%"  text="Left Aligned Text. No Clip. No Wrap." txtAlign="left" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+				<!-- Label 2 -->
+				<rx:Label width="100%" text="Left Aligned Text. With Clip. No Wrap." txtAlign="left" clipText="true" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+				<!-- Label 3 -->
+				<rx:Label text="Left Aligned Text. With Line Wrap."
+						  width="100%" txtAlign="left" allowWrap="true" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+			</rx:VGroup>
+			
+		</rx:Group>
+		
+		<rx:Group percentWidth="50" x="0">
+			
+			<rx:Rect left="0" top="0" right="0" bottom="0">
+				<rx:fill>
+					<rx:SolidColor color="#eeeeee" />
+				</rx:fill>
+			</rx:Rect>
+			
+			<rx:VGroup width="100%" left="10" right="10">
+				
+				<!-- Label 1 -->
+				<rx:Label width="100%" text="Right Aligned Text. No Clip. No Wrap." txtAlign="right" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+				<!-- Label 2 -->
+				<rx:Label width="100%" text="Right Aligned Text. With Clip. No Wrap." txtAlign="right" clipText="true" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+				<!-- Label 3 -->
+				<rx:Label text="Right Aligned Text. With Line Wrap."
+						  width="100%" txtAlign="right" allowWrap="true" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+			</rx:VGroup>
+			
+		</rx:Group>
+		
+		<rx:Group width="50%" x="0">
+			
+			<rx:Rect left="0" top="0" right="0" bottom="0">
+				<rx:fill>
+					<rx:SolidColor color="#eeeeee" />
+				</rx:fill>
+			</rx:Rect>
+			
+			<rx:VGroup width="100%" left="10" right="10">
+				
+				<!-- Label 1 -->
+				<rx:Label width="100%" text="Center Aligned Text. No Clip. No Wrap." txtAlign="center" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+				<!-- Label 2 -->
+				<rx:Label width="100%" text="Center Aligned Text. With Clip. No Wrap." txtAlign="center" clipText="true" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+				<!-- Label 3 -->
+				<rx:Label text="Center Aligned Text. With Line Wrap."
+						  width="100%" txtAlign="center" allowWrap="true" />
+				
+				<rx:Rect width="100%" height="2"><rx:fill><rx:SolidColor color="#333333" /></rx:fill></rx:Rect>
+				
+			</rx:VGroup>
+			
+		</rx:Group>
+		
+	</rx:VGroup>
+	
+</rx:Application>
